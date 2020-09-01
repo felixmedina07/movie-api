@@ -1,7 +1,7 @@
 const express = require('express');
 
 const UserMoviesService = require('../services/userMovies');
-const validationHandler= require('../utils/middleware/validationHandlers');
+const validationHandler = require('../utils/middleware/validationHandlers');
 
 const { movieIdSchema } = require('../utils/schemas/movies');
 const { userIdSchema } = require('../utils/schemas/users');
@@ -16,7 +16,7 @@ function userMoviesApi(app) {
   router.get(
     '/',
     validationHandler({ userId: userIdSchema }, 'query'),
-    async function(req, res, next) {
+    async function (req, res, next) {
       const { userId } = req.query;
 
       try {
@@ -24,7 +24,7 @@ function userMoviesApi(app) {
 
         res.status(200).json({
           data: userMovies,
-          message: 'user movies listed'
+          message: 'user movies listed',
         });
       } catch (error) {
         next(error);
